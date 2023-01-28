@@ -1,8 +1,10 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,7 +15,12 @@ const Register = () => {
     await axios
       .put(`${process.env.REACT_APP_SERVER_URL}/registration`, user)
       .then((res) => {
-        console.log(res);
+        if (res?.status === 200 && res?.data?.token) {
+          localStorage.setItem("access_token", res?.data?.token);
+          form.reset();
+          navigate("/");
+          Swal.fire("Successful registered");
+        }
       });
   };
 
