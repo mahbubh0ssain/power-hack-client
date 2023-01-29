@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import EditModal from "../Modal/editModal";
 import TableData from "./TableData";
 
-const Table = () => {
+const Table = ({ search }) => {
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
   const [billings, setBillings] = useState([]);
@@ -12,7 +12,7 @@ const Table = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/billing-list`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/billing-list?search=${search}`)
       .then((res) => {
         if (res?.data?.result?.length) {
           setLoading(false);
@@ -21,7 +21,7 @@ const Table = () => {
           setBillings(res?.data?.result);
         }
       });
-  }, [refresh, loading]);
+  }, [refresh, loading, search]);
 
   return (
     <div className="overflow-x-auto max-w-[1440px] mx-auto px-4">
