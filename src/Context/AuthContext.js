@@ -9,6 +9,7 @@ const AuthContext = ({ children }) => {
   const [billings, setBillings] = useState([]);
   const [editBill, setEditBill] = useState({});
   const [modalOpen, setModalOpen] = useState(true);
+  const [token, setToken] = useState("");
   const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -48,6 +49,8 @@ const AuthContext = ({ children }) => {
     numberOfPages,
     setCurrentPage,
     currentPage,
+    token,
+    setToken,
   };
 
   return (

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
+import { USER_CONTEXT } from "../Context/AuthContext";
 const Navbar = () => {
-  const token = localStorage.getItem("access_token");
+  const { setToken, token } = useContext(USER_CONTEXT);
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
+    setToken(localStorage.removeItem("access_token"));
   };
+
   return (
     <div className=" bg-red-300">
       <nav className="navbar max-w-[1440px] mx-auto">
