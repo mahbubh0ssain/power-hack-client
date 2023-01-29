@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import axios from "axios";
+import { USER_CONTEXT } from "../../Context/AuthContext";
 const AddModal = ({ setModalOpen }) => {
+  const { setTotalPaid } = useContext(USER_CONTEXT);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -8,6 +11,7 @@ const AddModal = ({ setModalOpen }) => {
     const number = form.number.value;
     const amount = form.amount.value;
     const billingInfo = { name, email, number, amount };
+    setTotalPaid((prev) => prev + amount);
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/add-billing`, billingInfo)
       .then((res) => {

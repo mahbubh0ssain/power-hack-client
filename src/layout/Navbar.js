@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
 import { USER_CONTEXT } from "../Context/AuthContext";
 const Navbar = () => {
-  const { setToken, token } = useContext(USER_CONTEXT);
+  const { setToken, token, totalPaid } = useContext(USER_CONTEXT);
 
   const handleLogout = () => {
     setToken(localStorage.removeItem("access_token"));
@@ -28,7 +28,9 @@ const Navbar = () => {
           <ul className="flex items-center ">
             {token ? (
               <>
-                <p>PaidTotal: **** </p>
+                <p className="text-xl text-white mr-3">
+                  PaidTotal: {totalPaid}
+                </p>
                 {""}
                 <li onClick={handleLogout} className="mr-3 cursor-pointer">
                   <HiOutlineLogout className="text-3xl text-white" />
