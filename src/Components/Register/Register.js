@@ -12,9 +12,22 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const user = { name, email, password };
-    await axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/registration`, user)
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/registration`, user)
       .then((res) => {
+        if (res?.data?.success === false) {
+          form.reset();
+          Swal.fire(res?.data?.message);
+          return;
+        }
+        if (
+          res?.status === 200 &&
+          res.data.message === "You are already registered"
+        ) {
+          form.reset();
+          Swal.fire("Already registered, Please Login");
+          return;
+        }
         if (res?.status === 200 && res?.data?.token) {
           localStorage.setItem("access_token", res?.data?.token);
           form.reset();
