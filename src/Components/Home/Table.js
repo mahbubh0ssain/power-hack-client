@@ -14,12 +14,12 @@ const Table = () => {
       .get(`${process.env.REACT_APP_SERVER_URL}/billing-list`)
       .then((res) => {
         if (res?.data?.result?.length) {
-          setLoading(!refresh);
-          setRefresh(false);
+          setLoading(false);
+          setRefresh(!refresh);
           setBillings(res?.data?.result);
         }
       });
-  }, [refresh]);
+  }, [refresh, loading]);
 
   return (
     <div className="overflow-x-auto max-w-[1440px] mx-auto px-4">
@@ -37,12 +37,23 @@ const Table = () => {
         <tbody>
           {billings?.map((bill) => {
             return (
-              <TableData key={bill._id} bill={bill} setEditBill={setEditBill} />
+              <TableData
+                key={bill._id}
+                bill={bill}
+                setEditBill={setEditBill}
+                loading={loading}
+                refresh={refresh}
+                setRefresh={setRefresh}
+              />
             );
           })}
         </tbody>
       </table>
-      <EditModal editBill={editBill} />
+      <EditModal
+        refresh={refresh}
+        setRefresh={setRefresh}
+        editBill={editBill}
+      />
     </div>
   );
 };

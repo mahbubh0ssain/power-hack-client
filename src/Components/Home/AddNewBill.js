@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import AddModal from "../Modal/addModal";
 
 const AddNewBill = () => {
+  const [modalOpen, setModalOpen] = useState(true);
   return (
     <>
       <label
@@ -10,7 +11,9 @@ const AddNewBill = () => {
       >
         Add New Bill
       </label>
-      <AddModal />
+      {modalOpen && (
+        <AddModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      )}
     </>
   );
 };

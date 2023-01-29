@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-const TableData = ({ bill, setEditBill }) => {
+const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
   const { _id, name, email, number, amount } = bill;
 
   return (
@@ -8,7 +6,7 @@ const TableData = ({ bill, setEditBill }) => {
       <td>{name}</td>
       <td>{email}</td>
       <td>{number}</td>
-      <td>{_id}</td>
+      <td>{loading ? "Generating Id..." : _id}</td>
       <td>${amount}</td>
       <td className="flex gap-2">
         <label

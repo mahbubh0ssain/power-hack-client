@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const token = localStorage.getItem("access_token");
+  
   const handleLogout = () => {
     localStorage.removeItem("access_token");
   };
@@ -39,10 +40,7 @@ const Navbar = () => {
           </ul>
 
           <div className="w-12 rounded-full cursor-pointer ">
-            <img
-              src="https://i.ibb.co/N2pL617/pngtree-modern-power-logo-image-487711-removebg-preview.png"
-              alt="User"
-            />
+            PaidTotal: 
           </div>
         </div>
       </nav>

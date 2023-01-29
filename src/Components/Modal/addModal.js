@@ -1,7 +1,5 @@
 import axios from "axios";
-import React from "react";
-
-const AddModal = () => {
+const AddModal = ({ setModalOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,7 +13,7 @@ const AddModal = () => {
       .then((res) => {
         if (res?.data?.result?.acknowledged) {
           form.reset();
-          
+          setModalOpen(false);
         }
       });
   };
