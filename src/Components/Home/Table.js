@@ -1,28 +1,21 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { USER_CONTEXT } from "../../Context/AuthContext";
 import EditModal from "../Modal/editModal";
 import TableData from "./TableData";
 
-const Table = ({ search }) => {
-  const [refresh, setRefresh] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [billings, setBillings] = useState([]);
-  const [editBill, setEditBill] = useState({});
-  const [modalOpen, setModalOpen] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/billing-list?search=${search}`)
-      .then((res) => {
-        if (res?.data?.result?.length) {
-          setLoading(false);
-          setRefresh(!refresh);
-          setModalOpen(true);
-          setBillings(res?.data?.result);
-        }
-      });
-  }, [refresh, loading, search]);
-
+const Table = () => {
+  const {
+    billings,
+    setEditBill,
+    loading,
+    setLoading,
+    setBillings,
+    refresh,
+    setModalOpen,
+    setRefresh,
+    editBill,
+    modalOpen,
+  } = useContext(USER_CONTEXT);
   return (
     <div className="overflow-x-auto max-w-[1440px] mx-auto px-4">
       <table className="table w-full">

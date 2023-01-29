@@ -1,4 +1,16 @@
-const SearchBillings = ({ handleSearch, searchRef }) => {
+import { useContext, useRef } from "react";
+import { USER_CONTEXT } from "../../Context/AuthContext";
+
+const SearchBillings = () => {
+
+  const { setSearch } = useContext(USER_CONTEXT);
+
+  const searchRef = useRef();
+
+  const handleSearch = () => {
+    setSearch(searchRef?.current?.value);
+  };
+  
   return (
     <div className="flex-1 bg-red-500 mr-2 p-2 rounded-md">
       <div className="flex items-center">
