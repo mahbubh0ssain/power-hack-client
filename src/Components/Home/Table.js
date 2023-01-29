@@ -1,4 +1,6 @@
 import React from "react";
+import Modal from "../Modal/addModal";
+import EditModal from "../Modal/editModal";
 
 const Table = () => {
   return (
@@ -22,13 +24,17 @@ const Table = () => {
             <td>4354sajhrt34957n</td>
             <td>$ 4000</td>
             <td className="flex gap-2">
-              <div className="bg-green-400 p-2 rounded-md font-bold cursor-pointer">
+              <label
+                htmlFor="edit-modal"
+                className="bg-green-400 p-2 rounded-md font-bold cursor-pointer"
+              >
                 Edit
-              </div>
+              </label>
               <div className="bg-red-700 p-2 rounded-md font-bold cursor-pointer">
                 Delete
               </div>
             </td>
+            <EditModal />
           </tr>
         </tbody>
       </table>
