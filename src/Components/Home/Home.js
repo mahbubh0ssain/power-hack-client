@@ -7,17 +7,13 @@ import Table from "./Table";
 const Home = () => {
   return (
     <div className="max-w-[1440px] mx-auto">
-      <div className="flex items-center justify-center my-6 px-4">
-        {/* search billings */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-3 justify-center my-6 px-4">
         <SearchBillings />
-        {/* add billing */}
         <AddNewBill />
       </div>
-      {/* table for user data */}
       <div className="my-4">
         <Table />
       </div>
-      {/* pagination */}
       <Pagination />
     </div>
   );

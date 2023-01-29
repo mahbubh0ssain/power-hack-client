@@ -2,7 +2,6 @@ import { useContext, useRef } from "react";
 import { USER_CONTEXT } from "../../Context/AuthContext";
 
 const SearchBillings = () => {
-
   const { setSearch } = useContext(USER_CONTEXT);
 
   const searchRef = useRef();
@@ -10,18 +9,20 @@ const SearchBillings = () => {
   const handleSearch = () => {
     setSearch(searchRef?.current?.value);
   };
-  
+
   return (
-    <div className="flex-1 bg-red-500 mr-2 p-2 rounded-md">
-      <div className="flex items-center">
-        <p className="text-2xl mr-2">Billings</p>
+    <div className="py-2 px-2 rounded-md bg-gradient-to-r from-green-400 to-blue-500  cursor-pointer text-xl">
+      <div className="flex items-center justify-between">
         <input
-          className="input"
+          className="input w-full "
           type="text"
           ref={searchRef}
           placeholder="Search by full name/email/phone"
         />
-        <button onClick={handleSearch} className="btn ml-2">
+        <button
+          onClick={handleSearch}
+          className="btn bg-gradient-to-l from-green-400 to-blue-500  ml-2 border-0"
+        >
           Search
         </button>
       </div>

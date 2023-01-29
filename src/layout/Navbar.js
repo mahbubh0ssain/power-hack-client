@@ -10,23 +10,28 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" bg-red-300">
+    <div className=" bg-gradient-to-r from-green-400 to-blue-500">
       <nav className="navbar max-w-[1440px] mx-auto">
         <div className="flex-1 items-center justify-start">
           <Link to="/">
-            <img
-              className="w-16"
-              src="https://i.ibb.co/N2pL617/pngtree-modern-power-logo-image-487711-removebg-preview.png"
-              alt="Logo"
-            />
+            <div className="flex items-center">
+              <img
+                className="w-16"
+                src="https://i.ibb.co/N2pL617/pngtree-modern-power-logo-image-487711-removebg-preview.png"
+                alt="Logo"
+              />
+              <p className="text-2xl text-white font-bold">Power Hack</p>
+            </div>
           </Link>
         </div>
-        <div className="flex-none gap-2">
-          <ul className="flex ">
+        <div className="flex gap-2">
+          <ul className="flex items-center ">
             {token ? (
               <>
+                <p>PaidTotal: **** </p>
+                {""}
                 <li onClick={handleLogout} className="mr-3 cursor-pointer">
-                  <HiOutlineLogout />
+                  <HiOutlineLogout className="text-3xl text-white" />
                 </li>
               </>
             ) : (
@@ -40,8 +45,6 @@ const Navbar = () => {
               </>
             )}
           </ul>
-
-          <div className="w-12 rounded-full cursor-pointer ">PaidTotal:</div>
         </div>
       </nav>
     </div>

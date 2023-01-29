@@ -39,15 +39,15 @@ const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
         <label
           onClick={() => setEditBill(bill)}
           htmlFor="edit-modal"
-          className="bg-green-400 p-2 rounded-md font-bold cursor-pointer"
+          className="bg-gradient-to-l from-green-400 to-blue-500 border-0 p-2 rounded-md font-bold cursor-pointer"
         >
-          <BiEdit className="w-6" />
+          <BiEdit className="text-xl text-white" />
         </label>
         <div
           onClick={() => handleDelete(_id)}
           className="bg-red-700 p-2 rounded-md font-bold cursor-pointer"
         >
-          <MdDeleteForever />
+          <MdDeleteForever className="text-xl text-white" />
         </div>
       </td>
     </tr>

@@ -24,7 +24,7 @@ const AddModal = ({ setModalOpen }) => {
         <div className="modal-box relative">
           <label
             htmlFor="add-modal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+            className="btn btn-sm btn-circle absolute right-2 top-2 bg-gradient-to-l from-green-400 to-blue-500 border-0"
           >
             ✕
           </label>
@@ -70,7 +70,10 @@ const AddModal = ({ setModalOpen }) => {
                 className="input input-bordered w-full"
               />
             </div>
-            <button className="btn w-full mt-3" type="submit">
+            <button
+              className="btn w-full bg-gradient-to-l from-green-400 to-blue-500 border-0 mt-3"
+              type="submit"
+            >
               Submit
             </button>
           </form>

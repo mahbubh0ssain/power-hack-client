@@ -18,7 +18,7 @@ const Table = () => {
   } = useContext(USER_CONTEXT);
   return (
     <div className="overflow-x-auto max-w-[1440px] mx-auto px-4">
-      <table className="table w-full">
+      <table className="table w-full striped">
         <thead>
           <tr>
             <th>Full Name</th>

@@ -13,7 +13,9 @@ const Pagination = () => {
             onClick={() => setCurrentPage(number)}
             key={number}
             className={`btn btn-md  ${
-              currentPage === number ? "btn-active" : ""
+              currentPage === number
+                ? "bg-gradient-to-r from-green-400 to-blue-500 border-0"
+                : ""
             } `}
           >
             {number + 1}
