@@ -10,20 +10,27 @@ const AuthContext = ({ children }) => {
   const [editBill, setEditBill] = useState({});
   const [modalOpen, setModalOpen] = useState(true);
   const [search, setSearch] = useState("");
+  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [perPageData, setPerPageData] = useState(10);
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/billing-list?search=${search}`)
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/billing-list?search=${search}&page=${currentPage}&perPage=${perPageData}`
+      )
       .then((res) => {
         if (res?.data?.result?.length) {
           setLoading(false);
           setRefresh(!refresh);
           setModalOpen(true);
+          setCount(res?.data?.count);
           setBillings(res?.data?.result);
         }
       });
-  }, [refresh, loading, search]);
+  }, [refresh, loading, search, currentPage, perPageData]);
 
+  const numberOfPages = Math.ceil(count / perPageData);
 
   const value = {
     setEditBill,
@@ -37,6 +44,10 @@ const AuthContext = ({ children }) => {
     billings,
     modalOpen,
     setSearch,
+    count,
+    numberOfPages,
+    setCurrentPage,
+    currentPage,
   };
 
   return (
