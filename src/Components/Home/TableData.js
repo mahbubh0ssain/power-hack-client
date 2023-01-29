@@ -1,3 +1,6 @@
+import { BiEdit } from "react-icons/bi";
+import { MdDeleteForever } from "react-icons/md";
+
 const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
   const { _id, name, email, number, amount } = bill;
 
@@ -14,10 +17,10 @@ const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
           htmlFor="edit-modal"
           className="bg-green-400 p-2 rounded-md font-bold cursor-pointer"
         >
-          Edit
+          <BiEdit className="w-6" />
         </label>
         <div className="bg-red-700 p-2 rounded-md font-bold cursor-pointer">
-          Delete
+          <MdDeleteForever />
         </div>
       </td>
     </tr>

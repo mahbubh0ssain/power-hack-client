@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { HiOutlineLogout } from "react-icons/hi";
 const Navbar = () => {
   const token = localStorage.getItem("access_token");
-  
+
   const handleLogout = () => {
     localStorage.removeItem("access_token");
   };
@@ -24,7 +24,7 @@ const Navbar = () => {
             {token ? (
               <>
                 <li onClick={handleLogout} className="mr-3 cursor-pointer">
-                  Logout
+                  <HiOutlineLogout />
                 </li>
               </>
             ) : (
@@ -39,9 +39,7 @@ const Navbar = () => {
             )}
           </ul>
 
-          <div className="w-12 rounded-full cursor-pointer ">
-            PaidTotal: 
-          </div>
+          <div className="w-12 rounded-full cursor-pointer ">PaidTotal:</div>
         </div>
       </nav>
     </div>
