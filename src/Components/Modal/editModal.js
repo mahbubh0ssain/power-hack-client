@@ -1,6 +1,7 @@
 import React from "react";
 
-const EditModal = ({ data }) => {
+const EditModal = ({ editBill }) => {
+  const { name, email, number, amount } = editBill;
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -21,7 +22,7 @@ const EditModal = ({ data }) => {
               <label>Name</label>
               <input
                 required
-                defaultValue={data?.name}
+                defaultValue={name}
                 type="name"
                 name="name"
                 placeholder="Type name here..."
@@ -32,6 +33,7 @@ const EditModal = ({ data }) => {
               <label>Email</label>
               <input
                 required
+                defaultValue={email}
                 type="email"
                 name="email"
                 placeholder="Type email here..."
@@ -42,6 +44,7 @@ const EditModal = ({ data }) => {
               <label>Phone</label>
               <input
                 required
+                defaultValue={number}
                 type="text"
                 name="number"
                 placeholder="Type phone here..."
@@ -52,6 +55,7 @@ const EditModal = ({ data }) => {
               <label>Amount</label>
               <input
                 required
+                defaultValue={amount}
                 type="text"
                 name="amount"
                 placeholder="Type amount here..."

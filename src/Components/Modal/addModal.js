@@ -1,8 +1,23 @@
+import axios from "axios";
 import React from "react";
 
 const AddModal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const number = form.number.value;
+    const amount = form.amount.value;
+    const billingInfo = { name, email, number, amount };
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/add-billing`, billingInfo)
+      .then((res) => {
+        if (res?.data?.result?.acknowledged) {
+          form.reset();
+          
+        }
+      });
   };
   return (
     <>
@@ -41,7 +56,7 @@ const AddModal = () => {
               <label>Phone</label>
               <input
                 required
-                type="text"
+                type="number"
                 name="number"
                 placeholder="Type phone here..."
                 className="input input-bordered w-full"
