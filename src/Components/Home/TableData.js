@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 
 const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
   const { _id, name, email, number, amount } = bill;
-
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -28,6 +27,7 @@ const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
       }
     });
   };
+
   return (
     <tr>
       <td>{name}</td>

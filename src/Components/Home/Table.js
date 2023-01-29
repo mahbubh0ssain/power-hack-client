@@ -8,6 +8,7 @@ const Table = () => {
   const [loading, setLoading] = useState(true);
   const [billings, setBillings] = useState([]);
   const [editBill, setEditBill] = useState({});
+  const [modalOpen, setModalOpen] = useState(true);
 
   useEffect(() => {
     axios
@@ -16,6 +17,7 @@ const Table = () => {
         if (res?.data?.result?.length) {
           setLoading(false);
           setRefresh(!refresh);
+          setModalOpen(true);
           setBillings(res?.data?.result);
         }
       });
@@ -49,11 +51,14 @@ const Table = () => {
           })}
         </tbody>
       </table>
-      <EditModal
-        refresh={refresh}
-        setRefresh={setRefresh}
-        editBill={editBill}
-      />
+      {modalOpen && (
+        <EditModal
+          refresh={refresh}
+          setModalOpen={setModalOpen}
+          setRefresh={setRefresh}
+          editBill={editBill}
+        />
+      )}
     </div>
   );
 };

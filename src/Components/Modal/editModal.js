@@ -1,9 +1,32 @@
+import axios from "axios";
 import React from "react";
+import Swal from "sweetalert2";
 
-const EditModal = ({ editBill }) => {
-  const { name, email, number, amount } = editBill;
-  const handleSubmit = (e) => {
+const EditModal = ({ editBill, refresh, setRefresh, setModalOpen }) => {
+  const { _id, name, email, number, amount } = editBill;
+
+  const handleEdit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const number = form.number.value;
+    const amount = form.amount.value;
+    const billingInfo = { name, email, number, amount };
+    axios
+      .patch(
+        `${process.env.REACT_APP_SERVER_URL}/update-billing/${_id}`,
+        billingInfo
+      )
+      .then((res) => {
+        if (res?.data?.result?.acknowledged) {
+          Swal.fire("Successfully updated");
+          setRefresh(!refresh);
+          form.reset();
+          setModalOpen(false);
+          console.log(res);
+        }
+      });
   };
   return (
     <>
@@ -16,7 +39,7 @@ const EditModal = ({ editBill }) => {
           >
             ✕
           </label>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleEdit}>
             <p className="text-2xl text-center">Edit Billing Info</p>
             <div className="form-control w-full">
               <label>Name</label>
