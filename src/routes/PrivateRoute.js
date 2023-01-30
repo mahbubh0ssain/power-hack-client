@@ -4,7 +4,6 @@ import { USER_CONTEXT } from "../Context/AuthContext";
 import { MoonLoader } from "react-spinners";
 const PrivateRoute = ({ children }) => {
   const { token, loadingUser } = useContext(USER_CONTEXT);
-  console.log(token);
   if (loadingUser) {
     return (
       <div className="flex items-center justify-center">
