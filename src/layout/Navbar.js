@@ -1,12 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
 import { USER_CONTEXT } from "../Context/AuthContext";
 const Navbar = () => {
-  const { setToken, token, totalPaid } = useContext(USER_CONTEXT);
+  const { totalPaid, token, setToken, loadingUser, setLoadingUser } =
+    useContext(USER_CONTEXT);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("access-token"));
+  }, [setToken, loadingUser, token]);
 
   const handleLogout = () => {
     setToken(localStorage.removeItem("access-token"));
+    setLoadingUser(false);
   };
 
   return (

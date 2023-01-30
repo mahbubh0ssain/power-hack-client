@@ -14,7 +14,8 @@ const AuthContext = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [perPageData, setPerPageData] = useState(10);
   const [totalPaid, setTotalPaid] = useState(0);
-  
+  const [token, setToken] = useState("");
+  const [loadingUser, setLoadingUser] = useState(true);
   useEffect(() => {
     axios
       .get(
@@ -51,6 +52,10 @@ const AuthContext = ({ children }) => {
     currentPage,
     totalPaid,
     setTotalPaid,
+    token,
+    setToken,
+    loadingUser,
+    setLoadingUser,
   };
 
   return (

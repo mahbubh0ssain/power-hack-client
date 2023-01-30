@@ -1,11 +1,12 @@
 import axios from "axios";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { USER_CONTEXT } from "../../Context/AuthContext";
 
 const Login = () => {
-  const location = useLocation();
+  const { setToken, setLoadingUser } = useContext(USER_CONTEXT);
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,9 +19,11 @@ const Login = () => {
       .then((res) => {
         if (res?.data?.success) {
           localStorage.setItem("access-token", res.data.token);
-          navigate(from, { replace: true });
+          setToken(localStorage.getItem("access-token"));
           form.reset();
+          setLoadingUser(false);
           Swal.fire(res?.data?.message);
+          navigate("/");
         }
         if (res?.data) {
           Swal.fire(res?.data?.message);

@@ -1,9 +1,11 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { USER_CONTEXT } from "../../Context/AuthContext";
 
 const Register = () => {
+  const { setToken, setLoadingUser } = useContext(USER_CONTEXT);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,8 @@ const Register = () => {
         }
         if (res?.status === 200 && res?.data?.token) {
           localStorage.setItem("access-token", res?.data?.token);
+          setToken(localStorage.getItem("access-token"));
+          setLoadingUser(false);
           form.reset();
           navigate("/");
           Swal.fire("Successfully register");
