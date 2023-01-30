@@ -18,7 +18,12 @@ const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
       if (result?.isConfirmed) {
         axios
           .delete(
-            `${process.env.REACT_APP_SERVER_URL}/api/delete-billing/${id}`
+            `${process.env.REACT_APP_SERVER_URL}/api/delete-billing/${id}`,
+            {
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("access-token")}`,
+              },
+            }
           )
           .then((res) => {
             if (res?.data?.result?.acknowledged) {

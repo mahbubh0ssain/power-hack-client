@@ -16,7 +16,12 @@ const EditModal = ({ editBill, refresh, setRefresh, setModalOpen }) => {
     axios
       .patch(
         `${process.env.REACT_APP_SERVER_URL}/api/update-billing/${_id}`,
-        billingInfo
+        billingInfo,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        }
       )
       .then((res) => {
         if (res?.data?.result?.acknowledged) {

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import axios from "axios";
 import { USER_CONTEXT } from "../../Context/AuthContext";
+import Swal from "sweetalert2";
 const AddModal = ({ setModalOpen }) => {
   const { setTotalPaid } = useContext(USER_CONTEXT);
   const handleSubmit = (e) => {
@@ -13,11 +14,20 @@ const AddModal = ({ setModalOpen }) => {
     const billingInfo = { name, email, number, amount };
     setTotalPaid((prev) => prev + amount);
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/api/add-billing`, billingInfo)
+      .post(
+        `${process.env.REACT_APP_SERVER_URL}/api/add-billing`,
+        billingInfo,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+        }
+      )
       .then((res) => {
         if (res?.data?.result?.acknowledged) {
           form.reset();
           setModalOpen(false);
+          Swal.fire("Biiling added successfully");
         }
       });
   };
