@@ -29,8 +29,10 @@ const EditModal = ({ editBill, refresh, setRefresh, setModalOpen }) => {
           setRefresh(!refresh);
           form.reset();
           setModalOpen(false);
-          console.log(res);
         }
+      })
+      .catch((err) => {
+        Swal.fire(err?.message);
       });
   };
   return (

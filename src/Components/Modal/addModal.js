@@ -29,6 +29,9 @@ const AddModal = ({ setModalOpen }) => {
           setModalOpen(false);
           Swal.fire("Biiling added successfully");
         }
+      })
+      .catch((err) => {
+        Swal.fire(err?.message);
       });
   };
   return (

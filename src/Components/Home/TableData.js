@@ -30,6 +30,9 @@ const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
               setRefresh(!refresh);
               Swal.fire("Deleted!");
             }
+          })
+          .catch((err) => {
+            Swal.fire(err?.message);
           });
       }
     });
