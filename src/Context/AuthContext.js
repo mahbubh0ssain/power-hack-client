@@ -16,6 +16,7 @@ const AuthContext = ({ children }) => {
   const [totalPaid, setTotalPaid] = useState(0);
   const [token, setToken] = useState("");
   const [loadingUser, setLoadingUser] = useState(true);
+
   useEffect(() => {
     axios
       .get(
