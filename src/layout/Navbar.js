@@ -8,6 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setToken(localStorage.getItem("access-token"));
+    setLoadingUser(false);
   }, [setToken, loadingUser, token]);
 
   const handleLogout = () => {

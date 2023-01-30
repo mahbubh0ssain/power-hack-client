@@ -4,8 +4,8 @@ import { USER_CONTEXT } from "../Context/AuthContext";
 
 const PrivateRoute = ({ children }) => {
   const { token, loadingUser } = useContext(USER_CONTEXT);
-
-  if (!token && loadingUser) {
+  console.log(token);
+  if (loadingUser) {
     return <div>Loading...</div>;
   }
 
