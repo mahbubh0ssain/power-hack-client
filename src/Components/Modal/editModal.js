@@ -15,7 +15,7 @@ const EditModal = ({ editBill, refresh, setRefresh, setModalOpen }) => {
     const billingInfo = { name, email, number, amount };
     axios
       .patch(
-        `${process.env.REACT_APP_SERVER_URL}/update-billing/${_id}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/update-billing/${_id}`,
         billingInfo
       )
       .then((res) => {

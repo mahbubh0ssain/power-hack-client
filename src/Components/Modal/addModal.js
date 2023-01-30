@@ -13,7 +13,7 @@ const AddModal = ({ setModalOpen }) => {
     const billingInfo = { name, email, number, amount };
     setTotalPaid((prev) => prev + amount);
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/add-billing`, billingInfo)
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/add-billing`, billingInfo)
       .then((res) => {
         if (res?.data?.result?.acknowledged) {
           form.reset();

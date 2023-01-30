@@ -6,7 +6,7 @@ const Navbar = () => {
   const { setToken, token, totalPaid } = useContext(USER_CONTEXT);
 
   const handleLogout = () => {
-    setToken(localStorage.removeItem("access_token"));
+    setToken(localStorage.removeItem("access-token"));
   };
 
   return (

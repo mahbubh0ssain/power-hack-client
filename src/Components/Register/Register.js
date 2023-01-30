@@ -13,7 +13,7 @@ const Register = () => {
     const password = form.password.value;
     const user = { name, email, password };
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/registration`, user)
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/registration`, user)
       .then((res) => {
         if (res?.data?.success === false) {
           form.reset();
@@ -29,10 +29,10 @@ const Register = () => {
           return;
         }
         if (res?.status === 200 && res?.data?.token) {
-          localStorage.setItem("access_token", res?.data?.token);
+          localStorage.setItem("access-token", res?.data?.token);
           form.reset();
           navigate("/");
-          Swal.fire("Successful registered");
+          Swal.fire("Successfully register");
         }
       });
   };
@@ -72,7 +72,10 @@ const Register = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <button className="btn btn-sm w-full mt-3" type="submit">
+          <button
+            className="btn btn-sm w-full mt-3 bg-gradient-to-r from-green-400 to-blue-500 border-0"
+            type="submit"
+          >
             Register
           </button>
         </form>

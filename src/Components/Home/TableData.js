@@ -17,7 +17,9 @@ const TableData = ({ bill, setEditBill, loading, refresh, setRefresh }) => {
     }).then((result) => {
       if (result?.isConfirmed) {
         axios
-          .delete(`${process.env.REACT_APP_SERVER_URL}/delete-billing/${id}`)
+          .delete(
+            `${process.env.REACT_APP_SERVER_URL}/api/delete-billing/${id}`
+          )
           .then((res) => {
             if (res?.data?.result?.acknowledged) {
               setRefresh(!refresh);

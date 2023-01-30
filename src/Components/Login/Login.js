@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -15,13 +14,13 @@ const Login = () => {
     const password = form.password.value;
     const user = { email, password };
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/login`, user)
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/login`, user)
       .then((res) => {
-        form.reset();
         if (res?.data?.success) {
-          Swal.fire(res?.data?.message);
-          localStorage.setItem("access_token", res?.data?.token);
+          localStorage.setItem("access-token", res.data.token);
           navigate(from, { replace: true });
+          form.reset();
+          Swal.fire(res?.data?.message);
         }
         if (res?.data) {
           Swal.fire(res?.data?.message);
@@ -30,7 +29,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center my-5  min-h-[64.6vh] ">
+    <div className="flex justify-center items-center my-5  min-h-[64.6vh]">
       <div className="p-6 shadow-md rounded-xl">
         <h2 className="text-center text-4xl mb-6">Login Please</h2>
         <form onSubmit={handleSubmit}>
@@ -54,7 +53,10 @@ const Login = () => {
               className="input input-bordered w-full"
             />
           </div>
-          <button className="btn btn-sm w-full mt-3" type="submit">
+          <button
+            className="btn btn-md w-full mt-3 bg-gradient-to-r from-green-400 to-blue-500 border-0"
+            type="submit"
+          >
             Login
           </button>
         </form>
